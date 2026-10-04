@@ -1,0 +1,4 @@
+/* A paper-note cursor for the portfolio's collage language. */
+body{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M6 3v21l6-5 4 9 4-2-4-9h8z' fill='%23faf7f0' stroke='%2338313d' stroke-width='2' stroke-linejoin='round'/%3E%3Ccircle cx='24' cy='7' r='3' fill='%23d6c4dd' stroke='%2338313d' stroke-width='1.5'/%3E%3C/svg%3E") 5 3,auto}
+a,button,[role=button]{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M9 4v14m0-10c0-2 3-2 3 0v6m0-8c0-2 3-2 3 0v8m0-6c0-2 3-2 3 0v7m0-5c0-2 3-2 3 0v7c0 6-3 9-8 9-4 0-7-3-7-7v-6c0-2 3-2 3 0' fill='%23d6c4dd' stroke='%2338313d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") 10 4,pointer}
+@media (pointer:coarse){body,a,button,[role=button]{cursor:auto}}

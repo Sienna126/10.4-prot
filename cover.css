@@ -1,0 +1,41 @@
+@font-face{font-family:'Pinyon Script';src:url('assets/pinyon-script.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+.about-page{overflow-y:auto;padding-top:5px;padding-bottom:10px;scrollbar-width:thin;scrollbar-color:#c3b7c9 transparent}
+.about-page h2{font-size:31px;line-height:1.35;margin:13px 0}
+.about-page h2 br{display:none}
+.about-page p{font-size:14px;line-height:1.85;margin:10px 0}
+.book-education{margin-top:18px;border-top:1px solid #b8aea3;padding-top:15px}
+.education-label{font-size:10px;letter-spacing:1.4px;color:#85718a}
+.education-title{font-size:18px;margin-top:10px;line-height:1.5}
+.education-title>span{font-size:11px;margin-left:12px;color:#777168;white-space:nowrap}
+.book-education p{font-size:12px;line-height:1.8;margin:6px 0}
+.about-page .mini-tags{margin:17px 0}
+@media(max-width:760px){.notebook.opened{height:760px}.opened .spread{grid-template-rows:auto 1fr;row-gap:8px}.about-page{overflow:visible}.about-page h2{font-size:25px}.about-page p{font-size:13px;line-height:1.85}.about-page .book-education p{font-size:12px}.education-title{font-size:17px}.education-title>span{display:block;margin:2px 0 0}.book-education{margin-top:16px;padding-top:13px}.about-page .mini-tags{margin:15px 0}}
+/* A single title gesture, balanced by a quieter handwritten note. */
+.cover h1{left:8%;top:16%;width:84%;height:215px;align-items:center;gap:0}
+.port{font-family:'Courier New',monospace;font-size:clamp(92px,10.5vw,137px);letter-spacing:-10px;line-height:1;color:#fffdf7;transform:translateY(-14px);text-shadow:1px 4px 0 #8b785518}
+.folio{font-family:'Pinyon Script','Libre Caslon Display',Georgia,serif;font-style:normal;font-size:clamp(168px,19vw,244px);letter-spacing:-7px;line-height:1;transform:rotate(-7deg) translate(-4px,3px);color:#fffdf7;text-shadow:1px 4px 0 #8b785510}
+.cover-note{right:10%;top:48%;width:285px;height:200px;transform:rotate(-7deg);padding:18px 25px 16px;background:repeating-linear-gradient(0deg,transparent,transparent 25px,#aaa69450 26px,#aaa69450 27px),#e9e7d2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.cover-note:before{left:27px;top:-13px;width:225px;height:27px;transform:rotate(2deg);opacity:.85}
+.cover-note .note-small{font-size:10px;letter-spacing:3px;line-height:1.2;margin:0 0 8px}
+.cover-note strong{font-family:'SimSun','Songti SC',serif;font-weight:400;font-size:31px;letter-spacing:7px;margin:0 0 11px;padding-left:7px;line-height:1.4}
+.cover-note>span:not(.note-small){font-size:14px;line-height:1.9;letter-spacing:2px}
+.cover-note .note-foot{font-size:8px;letter-spacing:.9px;margin-top:11px;border-top:1px solid #9c968a55;padding-top:9px;width:100%}
+.cover-bottom{bottom:30px}.cover-bottom p{font-size:14px;letter-spacing:1.4px}.open-book{padding:12px 18px}
+@media(min-width:1500px){.cover h1{top:16%}}
+@media(min-width:761px) and (max-width:1000px){.cover h1{left:7%;top:17%;width:88%}.port{font-size:103px;letter-spacing:-9px}.folio{font-size:185px}.cover-note{right:8%;width:240px;top:46%;height:197px}.cover-note:before{width:185px}.cover-bottom{left:35px;right:35px}}
+@media(max-width:760px){.cover h1{left:6%;top:13%;width:88%;height:145px;display:flex;align-items:center;justify-content:center}.port{font-size:clamp(58px,16.5vw,95px);letter-spacing:-6px;transform:translateY(-7px)}.folio{position:static;display:inline-block;font-size:clamp(104px,28vw,166px);letter-spacing:-3px;transform:rotate(-8deg) translate(-1px,10px)}.cover-note{top:43%;right:13%;width:74%;height:190px;padding:18px 20px 13px;transform:rotate(-6deg)}.cover-note:before{left:9%;width:82%;height:24px;top:-12px}.cover-note .note-small{font-size:9px;margin-bottom:8px;letter-spacing:2.5px}.cover-note strong{font-size:29px;letter-spacing:6px;margin-bottom:10px;padding-left:6px}.cover-note>span:not(.note-small){font-size:13px;letter-spacing:1.8px;line-height:1.9}.cover-note .note-foot{font-size:7px;letter-spacing:.6px;margin-top:10px;padding-top:8px;white-space:nowrap}.cover-bottom{bottom:22px;left:22px;right:22px}.open-book{padding:11px 10px}}
+/* Cover revision: full-width lettering and a single, generous quotation note. */
+.cover h1{left:4%;top:12%;width:92%;height:270px;justify-content:center;z-index:2}
+.port{font-size:clamp(130px,15.7vw,187px);letter-spacing:-15px;transform:translateY(-5px)}
+.folio{font-size:clamp(223px,26vw,318px);letter-spacing:-10px;transform:rotate(-7deg) translate(-6px,14px)}
+.cover-top{align-items:center}.cover-top span:first-child{font-family:'SimSun','Songti SC',serif;font-size:23px;letter-spacing:7px;color:#544b42}.cover-top span:last-child{font-size:10px;letter-spacing:2px}
+.cover-note{width:48%;height:220px;top:49%;right:10%;padding:35px 30px;transform:rotate(-6deg)}
+.cover-note:before{left:9%;width:82%;height:31px;top:-14px}
+.cover-note>span.cover-quote{font-family:'SimSun','Songti SC',serif;font-size:clamp(22px,2.4vw,29px);line-height:2;letter-spacing:4px;color:#605849}
+.cover-caption{font-size:13px;letter-spacing:3px;color:#746653}
+@media(min-width:1500px){.cover h1{top:12%}}
+@media(min-width:761px) and (max-width:1000px){.cover h1{left:4%;top:13%;width:92%;height:245px}.port{font-size:133px;letter-spacing:-11px}.folio{font-size:228px;letter-spacing:-7px}.cover-note{width:49%;right:9%;height:207px;top:49%}.cover-note>span.cover-quote{font-size:23px;letter-spacing:2px}}
+@media(max-width:760px){.cover h1{left:2%;top:13%;width:96%;height:165px;justify-content:center}.port{font-size:clamp(65px,19vw,113px);letter-spacing:-7px;transform:translateY(-6px)}.folio{font-size:clamp(119px,34vw,195px);letter-spacing:-5px;transform:rotate(-7deg) translate(-3px,11px)}.cover-top span:first-child{font-size:18px;letter-spacing:5px}.cover-top span:last-child{display:none}.cover-note{width:84%;height:209px;top:44%;right:8%;padding:28px 15px;transform:rotate(-6deg)}.cover-note:before{width:82%;left:9%;height:26px;top:-12px}.cover-note>span.cover-quote{font-size:clamp(18px,5.3vw,25px);line-height:2.15;letter-spacing:2px}.cover-caption{font-size:10px;letter-spacing:1px}.cover-bottom{left:21px;right:21px;bottom:22px}}
+.tool-project{padding:28px 40px 20px;background:#e5e1ec;border:1px solid #b7acbe;border-radius:4px 20px 4px 4px}
+.tool-body{display:grid;grid-template-columns:1.1fr 1fr;gap:50px;padding:34px 0;align-items:center}.tool-body h3{font-size:47px;font-weight:500;letter-spacing:2px;margin:15px 0}.tool-body p{font-size:14px;line-height:1.9;color:#6d6471;max-width:380px}.tool-body .tool-subtitle{font-size:17px;color:#48404e}.tool-actions{display:flex;gap:12px;margin-top:25px;flex-wrap:wrap}.tool-actions button,.tool-actions a,.tool-live-link{display:inline-block;padding:12px 18px;font-size:14px;border:1px solid #91809b;background:transparent;border-radius:3px}.tool-actions a,.tool-live-link{background:#68566f;color:#fff9ff}.tool-live-link{margin-top:24px}.tool-features{background:#faf7f0;padding:10px 27px;transform:rotate(2deg);box-shadow:3px 6px 0 #b7a9c344}.tool-features>div{display:flex;gap:20px;align-items:center;padding:10px 0}.tool-features>div+div{border-top:1px solid #d3c9d5}.tool-features>div>span{font:italic 29px Georgia;color:#9a80a7}.tool-features b{display:block;font-weight:500;font-size:18px;color:#49404e}.tool-features small{font-size:12px}.filters{flex-wrap:wrap}
+@media(max-width:760px){.tool-project{padding:23px}.tool-body{grid-template-columns:1fr;gap:24px;padding:25px 0}.tool-body h3{font-size:38px}.tool-body .tool-subtitle{font-size:15px}.tool-body p{font-size:13px}.tool-actions button,.tool-actions a{font-size:12px;padding:11px 14px}.tool-features{padding:8px 20px;margin:0 5px 10px}.tool-features b{font-size:16px}}
