@@ -85,19 +85,5 @@ document.querySelector('#copyEmail').addEventListener('click',async()=>{const to
   search?.addEventListener('input',renderScripts);
   renderScripts();
 
-  const galleryInfo = {
-    artwork:{title:'毕业设计《重奏》',label:'GRADUATION PROJECT / LACQUER ART',text:'以现代电声乐器造型为灵感，将吉他、键盘、架子鼓、麦克风等元素提炼、解构与重组；结合天然大漆、镶嵌、变涂、罩漆与磨显等工艺，让传统漆艺与当代音乐文化形成对话。',src:'assets/artwork-thumb.jpg',alt:'毕业设计《重奏》漆艺作品拼图'},
-    photography:{title:'城市与旅行摄影',label:'PHOTOGRAPHY / VISUAL NOTES',text:'记录城市建筑、街道、夜景与旅行场景，练习构图、光线观察和色彩表达，也将这些观察作为视觉设计与内容创作的灵感来源。',src:'assets/photography-thumb.jpg',alt:'城市建筑、街景与旅行摄影作品拼图'},
-    stage:{title:'乐队舞台视觉设计',label:'STAGE VISUALS / LIVE MUSIC',text:'围绕歌曲气质、演出主题与现场观看距离组织画面，尝试用色彩、字体和图形建立舞台视觉氛围，并结合现场照片观察大屏呈现效果。',src:'assets/stage-thumb.jpg',alt:'校园乐队演出现场与舞台视觉拼图'}
-  };
-  document.querySelectorAll('[data-gallery]').forEach(button=>button.addEventListener('click',()=>{
-    const item=galleryInfo[button.dataset.gallery]; if(!item) return;
-    lastTrigger=button;
-    content.replaceChildren();
-    const label=document.createElement('span');label.className='dialog-kicker';label.textContent=item.label;content.append(label);
-    const title=document.createElement('h2');title.id='dialogTitle';title.textContent=item.title;content.append(title);
-    const img=document.createElement('img');img.src=item.src;img.alt=item.alt;img.style.width='100%';img.style.maxHeight='380px';img.style.objectFit='contain';img.style.background='#e8e0d5';img.style.margin='12px 0 18px';content.append(img);
-    const p=document.createElement('p');p.textContent=item.text;content.append(p);
-    dialog.showModal();document.body.style.overflow='hidden';dialog.scrollTop=0;
-  }));
+
 })();
