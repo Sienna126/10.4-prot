@@ -78,11 +78,11 @@ $$('[data-gallery]').forEach(btn=>btn.addEventListener('click',()=>{
  media.replaceChildren();
  info.pages.forEach(([file,caption])=>{
   const figure=document.createElement('figure');figure.className='portfolio-page-figure';
-  const link=document.createElement('a');link.href='assets/portfolio-pages/'+file;link.target='_blank';link.rel='noopener';link.title='在新标签页打开高清原图';
-  const image=document.createElement('img');image.src='assets/portfolio-pages/'+file;image.alt=caption;image.loading='lazy';image.decoding='async';
+  const link=document.createElement('a');link.href='assets/'+file;link.target='_blank';link.rel='noopener';link.title='在新标签页打开高清原图';
+  const image=document.createElement('img');image.src='assets/'+file;image.alt=caption;image.loading='lazy';image.decoding='async';
   link.append(image);figure.append(link);
   const label=document.createElement('figcaption');label.textContent=caption;figure.append(label);
-  const zoom=document.createElement('a');zoom.className='portfolio-page-zoom';zoom.href='assets/portfolio-pages/'+file;zoom.target='_blank';zoom.rel='noopener';zoom.textContent='打开高清原图 ↗';figure.append(zoom);
+  const zoom=document.createElement('a');zoom.className='portfolio-page-zoom';zoom.href='assets/'+file;zoom.target='_blank';zoom.rel='noopener';zoom.textContent='打开高清原图 ↗';figure.append(zoom);
   media.append(figure);
  });
  galleryDialog.showModal();document.body.style.overflow='hidden';
