@@ -61,16 +61,30 @@ $$('[data-script-filter]').forEach(btn=>btn.addEventListener('click',()=>{active
 $('#scriptSearch')?.addEventListener('input',renderScripts);
 renderScripts();updateCalculator();
 const galleryContent={
- artwork:{kicker:'01 / GRADUATION PROJECT',title:'毕业设计《重奏》',description:'我以吉他、键盘、架子鼓、麦克风等现代电声乐器为灵感，将乐器结构提炼、解构与重组，并结合天然大漆等工艺，探索传统漆艺与现代音乐文化的融合。'},
- photography:{kicker:'02 / PHOTOGRAPHY',title:'城市与旅行摄影',description:'我记录城市建筑、街景、夜色与旅行中的日常瞬间，关注画面构图、光线层次和色彩氛围，将观察积累转化为视觉创作灵感。'},
- stage:{kicker:'03 / STAGE VISUALS',title:'乐队舞台视觉设计',description:'我整理校园乐队演出背景与舞台实拍素材，展示不同歌曲和演出活动中的 LED 背景画面、色彩字体选择与现场呈现。'}
+ lacquer:{kicker:'01 / LACQUER ART · P01–03',title:'漆艺艺术设计',description:'原 PDF 第 1 章：漆盘《星穹》、大漆肌理、《漆语田园·生灵乐居》。每张图保留原版作品集排版与作品说明。',pages:[['06-lacquer-starfield.jpg','漆盘《星穹》'],['07-lacquer-textures.jpg','大漆肌理'],['08-lacquer-rural-life.jpg','《漆语田园·生灵乐居》']]},
+ ceramic:{kicker:'02 / CERAMIC ART · P04–07',title:'陶艺艺术设计',description:'原 PDF 第 2 章：陶艺捏塑《肌肤》《泥与墨的星际密语》《青花喵的灵露祈愿》及《海浪》。',pages:[['10-ceramic-skin.jpg','陶艺捏塑作品《肌肤》'],['11-ceramic-clay-ink.jpg','《泥与墨的星际密语》'],['12-ceramic-blue-cat.jpg','《青花喵的灵露祈愿》'],['13-ceramic-waves.jpg','《海浪》']]},
+ metal:{kicker:'03 / METAL CRAFT · P08',title:'金属工艺设计',description:'原 PDF 第 3 章：戒指镶嵌作品，包含包镶、抓镶等工艺细节。',pages:[['15-metal-jewelry.jpg','戒指镶嵌']]},
+ fiber:{kicker:'04 / FIBER ART · P09–10',title:'纤维艺术设计',description:'原 PDF 第 4 章：羊毛毡作品《触绪》与戳戳绣作品《织梦小狗》。',pages:[['17-fiber-felt.jpg','羊毛毡作品《触绪》'],['18-fiber-embroidery.jpg','戳戳绣作品《织梦小狗》']]},
+ mixed:{kicker:'05 / MIXED MEDIA · P11',title:'综合材料设计',description:'原 PDF 第 5 章：岩彩作品《靛蓝梦域·蜕变之契》。',pages:[['20-mixed-media-indigo.jpg','《靛蓝梦域·蜕变之契》']]},
+ other:{kicker:'06 / OTHER ART & DESIGN · P12–17',title:'其他艺术设计',description:'原 PDF 第 6 章：壁画《摩利支天》、马赛克《水上小镇》、版画《雪乡》、印染工艺、社团招新海报设计与 IP 形象设计。',pages:[['22-other-mural.jpg','壁画作品《摩利支天》'],['23-other-mosaic-town.jpg','马赛克作品《水上小镇》'],['24-other-woodcut-snow-village.jpg','版画作品《雪乡》'],['25-other-dyeing.jpg','印染工艺'],['26-other-club-posters.jpg','社团招新海报设计'],['27-other-ip-characters.jpg','IP 形象设计']]}
 };
 const galleryDialog=$('#galleryDialog');
 $$('[data-gallery]').forEach(btn=>btn.addEventListener('click',()=>{
  const key=btn.dataset.gallery,info=galleryContent[key];if(!info||!galleryDialog)return;
- const image=$('#galleryDialogImage');image.src=btn.querySelector('img').src;image.alt=btn.querySelector('img').alt;
- $('#galleryDialogKicker').textContent=info.kicker;$('#galleryDialogTitle').textContent=info.title;$('#galleryDialogDescription').textContent=info.description;
- image.style.objectPosition=key==='artwork'?'top center':key==='photography'?'center center':'bottom center';
+ $('#galleryDialogKicker').textContent=info.kicker;
+ $('#galleryDialogTitle').textContent=info.title;
+ $('#galleryDialogDescription').textContent=info.description;
+ const media=$('.gallery-dialog-media');
+ media.replaceChildren();
+ info.pages.forEach(([file,caption])=>{
+  const figure=document.createElement('figure');figure.className='portfolio-page-figure';
+  const link=document.createElement('a');link.href='assets/portfolio-pages/'+file;link.target='_blank';link.rel='noopener';link.title='在新标签页打开高清原图';
+  const image=document.createElement('img');image.src='assets/portfolio-pages/'+file;image.alt=caption;image.loading='lazy';image.decoding='async';
+  link.append(image);figure.append(link);
+  const label=document.createElement('figcaption');label.textContent=caption;figure.append(label);
+  const zoom=document.createElement('a');zoom.className='portfolio-page-zoom';zoom.href='assets/portfolio-pages/'+file;zoom.target='_blank';zoom.rel='noopener';zoom.textContent='打开高清原图 ↗';figure.append(zoom);
+  media.append(figure);
+ });
  galleryDialog.showModal();document.body.style.overflow='hidden';
 }));
 $('.gallery-dialog-close')?.addEventListener('click',()=>galleryDialog.close());
