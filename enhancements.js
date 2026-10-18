@@ -67,8 +67,8 @@ const galleryContent={
  fiber:{kicker:'04 / FIBER ART · P09–10',title:'纤维艺术设计',description:'原 PDF 第 4 章：羊毛毡作品《触绪》与戳戳绣作品《织梦小狗》。',pages:[['17-fiber-felt.jpg','羊毛毡作品《触绪》'],['18-fiber-embroidery.jpg','戳戳绣作品《织梦小狗》']]},
  mixed:{kicker:'05 / MIXED MEDIA · P11',title:'综合材料设计',description:'原 PDF 第 5 章：岩彩作品《靛蓝梦域·蜕变之契》。',pages:[['20-mixed-media-indigo.jpg','《靛蓝梦域·蜕变之契》']]},
  other:{kicker:'06 / OTHER ART & DESIGN',title:'其他艺术设计',description:'壁画、马赛克、版画、印染工艺、社团海报与 IP 形象设计。',pages:[['22-other-mural.jpg','壁画作品《摩利支天》'],['23-other-mosaic-town.jpg','马赛克作品《水上小镇》'],['24-other-woodcut-snow-village.jpg','版画作品《雪乡》'],['25-other-dyeing.jpg','印染工艺'],['26-other-club-posters.jpg','社团招新海报设计'],['27-other-ip-characters.jpg','IP 形象设计']]},
- photography:{kicker:'摄影作品',title:'城市与旅行摄影',description:'记录城市建筑、海港天际线、街头交通、建筑反射、夜景与旅行中的日常观察。',pages:[['photography-thumb.jpg','城市与旅行摄影作品']]},
- stage:{kicker:'舞台设计',title:'乐队舞台视觉',description:'收录乐队演出的舞台背景画面与现场记录，呈现不同歌曲主题的色彩、字体和舞台氛围。',pages:[['stage-thumb.jpg','乐队舞台视觉与现场演出']]}
+ photography:{kicker:'摄影作品',title:'城市与旅行摄影',description:'前 8 张摄影作品，记录城市建筑、海港天际线、街头交通、建筑反射、夜景与旅行见闻。',pages:[['photography-01.jpg','城市天际线'],['photography-02.jpg','海港与城市建筑'],['photography-03.jpg','城市夜间街景'],['photography-04.jpg','建筑镜面与街头倒影'],['photography-05.jpg','城市街道与出租车'],['photography-06.jpg','夜间商业街景'],['photography-07.jpg','旅行中的鸟居与绿意'],['photography-08.jpg','东京夜间街景']]},
+ stage:{kicker:'舞台设计',title:'乐队舞台视觉',description:'后 7 张舞台设计与演出记录，展示不同歌曲主题的背景画面、字体色彩与现场呈现。',pages:[['stage-01.jpg','乐队演出现场与舞台画面'],['stage-02.jpg','《Dear John》舞台视觉'],['stage-03.jpg','高饱和撞色舞台背景'],['stage-04.jpg','红色主题舞台视觉'],['stage-05.jpg','歌曲主题背景与乐队演出'],['stage-06.jpg','校园汇报演出现场'],['stage-07.jpg','红色舞台背景与现场效果']]}
 };
 const galleryDialog=$('#galleryDialog');
 $$('[data-gallery]').forEach(btn=>btn.addEventListener('click',()=>{
@@ -82,9 +82,10 @@ $$('[data-gallery]').forEach(btn=>btn.addEventListener('click',()=>{
   const figure=document.createElement('figure');figure.className='portfolio-page-figure';
   const link=document.createElement('a');link.href='assets/'+file;link.target='_blank';link.rel='noopener';link.title='在新标签页打开高清原图';
   const image=document.createElement('img');image.src='assets/'+file;image.alt=caption;image.loading='lazy';image.decoding='async';
-  link.append(image);figure.append(link);
-  const label=document.createElement('figcaption');label.textContent=caption;figure.append(label);
-  const zoom=document.createElement('a');zoom.className='portfolio-page-zoom';zoom.href='assets/'+file;zoom.target='_blank';zoom.rel='noopener';zoom.textContent='打开高清原图 ↗';figure.append(zoom);
+  const label=document.createElement('figcaption');label.textContent=caption;
+  const zoom=document.createElement('a');zoom.className='portfolio-page-zoom';zoom.href='assets/'+file;zoom.target='_blank';zoom.rel='noopener';zoom.textContent='打开高清原图 ↗';
+  image.onerror=()=>{image.onerror=null;const fallback='assets/'+(key==='photography'?'photography-thumb.jpg':'stage-thumb.jpg');image.src=fallback;link.href=fallback;zoom.href=fallback;label.textContent=caption+'（原图上传后可查看高清版本）'};
+  link.append(image);figure.append(link);figure.append(label);figure.append(zoom);
   media.append(figure);
  });
  galleryDialog.showModal();document.body.style.overflow='hidden';
