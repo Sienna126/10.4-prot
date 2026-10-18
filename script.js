@@ -16,3 +16,88 @@ document.querySelectorAll('[data-project]').forEach(button=>button.addEventListe
 document.querySelector('.dialog-close').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});dialog.addEventListener('close',()=>{document.body.style.overflow='';lastTrigger?.focus({preventScroll:true})});
 document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('[data-filter]').forEach(b=>{const selected=b===button;b.classList.toggle('active',selected);b.setAttribute('aria-pressed',String(selected))});document.querySelectorAll('[data-category]').forEach(card=>{card.hidden=button.dataset.filter!=='all'&&card.dataset.category!==button.dataset.filter});document.querySelector('.small-projects').hidden=['ads','tools'].includes(button.dataset.filter)}));
 document.querySelector('#copyEmail').addEventListener('click',async()=>{const toast=document.querySelector('#toast');try{await navigator.clipboard.writeText('1637883387@qq.com');toast.textContent='邮箱已复制，期待你的来信。'}catch{toast.textContent='邮箱：1637883387@qq.com，可长按或选中复制。'}toast.classList.add('visible');setTimeout(()=>toast.classList.remove('visible'),3500)});
+
+
+// Interactive portfolio toolbox: metrics calculator, searchable copy-ready script drafts and gallery previews.
+(() => {
+  const byId = id => document.getElementById(id);
+  const number = id => {
+    const value = Number(byId(id)?.value);
+    return Number.isFinite(value) && value > 0 ? value : 0;
+  };
+  const money = value => value > 0 ? '¥' + value.toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2}) : '—';
+  const percent = value => value > 0 ? value.toFixed(2) + '%' : '—';
+  const calcIds = ['calcSpend','calcImpressions','calcClicks','calcLeads','calcQualified','calcDeals','calcRevenue'];
+  function updateCalculator() {
+    if (!byId('calcSpend')) return;
+    const spend=number('calcSpend'), impressions=number('calcImpressions'), clicks=number('calcClicks');
+    const leads=number('calcLeads'), qualified=number('calcQualified'), deals=number('calcDeals'), revenue=number('calcRevenue');
+    byId('calcCtr').textContent=percent(impressions ? clicks/impressions*100 : 0);
+    byId('calcCpc').textContent=money(clicks ? spend/clicks : 0);
+    byId('calcCpl').textContent=money(leads ? spend/leads : 0);
+    byId('calcQuality').textContent=percent(leads ? qualified/leads*100 : 0);
+    byId('calcDealRate').textContent=percent(leads ? deals/leads*100 : 0);
+    byId('calcRoi').textContent=spend ? (revenue/spend).toFixed(2) : '—';
+  }
+  calcIds.forEach(id => byId(id)?.addEventListener('input',updateCalculator));
+  updateCalculator();
+
+  const scriptDrafts = [
+    {category:'education',tag:'痛点切入',title:'数学思维｜家长痛点',text:'孩子做题很快，却总是换个问法就不会？\n与其反复刷题，不如先看看孩子有没有理解题目背后的思路。\n用一道生活化小题，带孩子体验“观察—推理—验证”的过程。'},
+    {category:'education',tag:'过程展示',title:'数学思维｜过程演示',text:'同一道题，为什么有的孩子只能记住答案，有的孩子能说出理由？\n用可视化步骤拆开思考过程，让孩子看见每一步是怎么推出来的。\n具体效果以课程内容与孩子实际学习情况为准。'},
+    {category:'education',tag:'家长决策',title:'数学思维｜课程选择',text:'给孩子选思维课，别只看题目难不难。\n可以重点看三个方面：是否讲清思路、是否有循序渐进的练习、是否能及时反馈。\n先了解课程安排，再判断是否适合孩子。'},
+    {category:'home',tag:'需求场景',title:'家装｜免费量房',text:'装修准备开始了，户型怎么规划更顺手？\n先把家庭成员、收纳需求和常用动线列出来，再结合实际尺寸做方案。\n可预约量房与方案沟通，具体服务范围以门店说明为准。'},
+    {category:'home',tag:'决策顾虑',title:'家装｜报价拆解',text:'看装修报价，不要只盯着总价。\n把材料、施工、增项和售后逐项问清楚，比较同一口径下的方案，才更容易判断预算是否合理。'},
+    {category:'ai',tag:'功能演示',title:'AI 修图｜前后对比',text:'一张照片想换种氛围，不一定要从头拍。\n演示同一张图在不同风格与参数下的变化，让用户直观看到工具能做什么。\n画面效果以实际产品能力为准。'},
+    {category:'ai',tag:'场景切入',title:'AI 修图｜创作灵感',text:'想发照片却不知道怎么调色？\n先确定你想要的情绪：清透、复古、电影感，还是更明亮的日常风格。\n用 AI 辅助探索方向，再按自己的审美做最后调整。'}
+  ];
+  const list=byId('scriptList'), search=byId('scriptSearch');
+  let activeScriptFilter='all';
+  function renderScripts() {
+    if (!list) return;
+    const q=(search?.value||'').trim().toLowerCase();
+    list.replaceChildren();
+    const matched=scriptDrafts.filter(item=>(activeScriptFilter==='all'||item.category===activeScriptFilter) && (!q || (item.title+item.tag+item.text).toLowerCase().includes(q)));
+    if (!matched.length) {
+      const empty=document.createElement('p'); empty.className='calc-note'; empty.textContent='没有找到匹配的脚本，试试其他关键词。'; list.append(empty); return;
+    }
+    matched.forEach(item=>{
+      const card=document.createElement('article');card.className='script-item';
+      const head=document.createElement('div');head.className='script-item-head';
+      const title=document.createElement('b');title.textContent=item.title;
+      const tag=document.createElement('small');tag.textContent=item.tag;
+      head.append(title,tag);
+      const body=document.createElement('p');body.textContent=item.text;
+      const button=document.createElement('button');button.type='button';button.textContent='复制文案';
+      button.addEventListener('click',async()=>{
+        const toast=byId('toast');
+        try { await navigator.clipboard.writeText(item.text); if(toast){toast.textContent='文案已复制，可继续编辑后使用。';toast.classList.add('visible');setTimeout(()=>toast.classList.remove('visible'),2600);} }
+        catch { if(toast){toast.textContent='当前浏览器暂不支持自动复制，请手动选择文案。';toast.classList.add('visible');setTimeout(()=>toast.classList.remove('visible'),3000);} }
+      });
+      card.append(head,body,button);list.append(card);
+    });
+  }
+  document.querySelectorAll('[data-script-filter]').forEach(button=>button.addEventListener('click',()=>{
+    activeScriptFilter=button.dataset.scriptFilter;
+    document.querySelectorAll('[data-script-filter]').forEach(b=>b.classList.toggle('active',b===button));
+    renderScripts();
+  }));
+  search?.addEventListener('input',renderScripts);
+  renderScripts();
+
+  const galleryInfo = {
+    artwork:{title:'毕业设计《重奏》',label:'GRADUATION PROJECT / LACQUER ART',text:'以现代电声乐器造型为灵感，将吉他、键盘、架子鼓、麦克风等元素提炼、解构与重组；结合天然大漆、镶嵌、变涂、罩漆与磨显等工艺，让传统漆艺与当代音乐文化形成对话。',src:'assets/artwork-thumb.jpg',alt:'毕业设计《重奏》漆艺作品拼图'},
+    photography:{title:'城市与旅行摄影',label:'PHOTOGRAPHY / VISUAL NOTES',text:'记录城市建筑、街道、夜景与旅行场景，练习构图、光线观察和色彩表达，也将这些观察作为视觉设计与内容创作的灵感来源。',src:'assets/photography-thumb.jpg',alt:'城市建筑、街景与旅行摄影作品拼图'},
+    stage:{title:'乐队舞台视觉设计',label:'STAGE VISUALS / LIVE MUSIC',text:'围绕歌曲气质、演出主题与现场观看距离组织画面，尝试用色彩、字体和图形建立舞台视觉氛围，并结合现场照片观察大屏呈现效果。',src:'assets/stage-thumb.jpg',alt:'校园乐队演出现场与舞台视觉拼图'}
+  };
+  document.querySelectorAll('[data-gallery]').forEach(button=>button.addEventListener('click',()=>{
+    const item=galleryInfo[button.dataset.gallery]; if(!item) return;
+    lastTrigger=button;
+    content.replaceChildren();
+    const label=document.createElement('span');label.className='dialog-kicker';label.textContent=item.label;content.append(label);
+    const title=document.createElement('h2');title.id='dialogTitle';title.textContent=item.title;content.append(title);
+    const img=document.createElement('img');img.src=item.src;img.alt=item.alt;img.style.width='100%';img.style.maxHeight='380px';img.style.objectFit='contain';img.style.background='#e8e0d5';img.style.margin='12px 0 18px';content.append(img);
+    const p=document.createElement('p');p.textContent=item.text;content.append(p);
+    dialog.showModal();document.body.style.overflow='hidden';dialog.scrollTop=0;
+  }));
+})();
