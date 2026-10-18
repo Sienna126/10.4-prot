@@ -66,7 +66,9 @@ const galleryContent={
  metal:{kicker:'03 / METAL CRAFT · P08',title:'金属工艺设计',description:'原 PDF 第 3 章：戒指镶嵌作品，包含包镶、抓镶等工艺细节。',pages:[['15-metal-jewelry.jpg','戒指镶嵌']]},
  fiber:{kicker:'04 / FIBER ART · P09–10',title:'纤维艺术设计',description:'原 PDF 第 4 章：羊毛毡作品《触绪》与戳戳绣作品《织梦小狗》。',pages:[['17-fiber-felt.jpg','羊毛毡作品《触绪》'],['18-fiber-embroidery.jpg','戳戳绣作品《织梦小狗》']]},
  mixed:{kicker:'05 / MIXED MEDIA · P11',title:'综合材料设计',description:'原 PDF 第 5 章：岩彩作品《靛蓝梦域·蜕变之契》。',pages:[['20-mixed-media-indigo.jpg','《靛蓝梦域·蜕变之契》']]},
- other:{kicker:'06 / OTHER ART & DESIGN · P12–17',title:'其他艺术设计',description:'原 PDF 第 6 章：壁画《摩利支天》、马赛克《水上小镇》、版画《雪乡》、印染工艺、社团招新海报设计与 IP 形象设计。',pages:[['22-other-mural.jpg','壁画作品《摩利支天》'],['23-other-mosaic-town.jpg','马赛克作品《水上小镇》'],['24-other-woodcut-snow-village.jpg','版画作品《雪乡》'],['25-other-dyeing.jpg','印染工艺'],['26-other-club-posters.jpg','社团招新海报设计'],['27-other-ip-characters.jpg','IP 形象设计']]}
+ other:{kicker:'06 / OTHER ART & DESIGN',title:'其他艺术设计',description:'壁画、马赛克、版画、印染工艺、社团海报与 IP 形象设计。',pages:[['22-other-mural.jpg','壁画作品《摩利支天》'],['23-other-mosaic-town.jpg','马赛克作品《水上小镇》'],['24-other-woodcut-snow-village.jpg','版画作品《雪乡》'],['25-other-dyeing.jpg','印染工艺'],['26-other-club-posters.jpg','社团招新海报设计'],['27-other-ip-characters.jpg','IP 形象设计']]},
+ photography:{kicker:'PHOTOGRAPHY',title:'城市与旅行摄影',description:'记录城市建筑、街景、夜色与旅行中的日常观察。',pages:[['摄影缩略图.jpg','城市与旅行摄影作品']]},
+ stage:{kicker:'STAGE VISUALS',title:'乐队舞台设计',description:'围绕乐队演出主题进行背景画面与舞台视觉设计，结合色彩、字体和现场氛围完成视觉呈现。',pages:[['舞台缩略图.jpg','乐队舞台视觉设计作品']]}
 };
 const galleryDialog=$('#galleryDialog');
 $$('[data-gallery]').forEach(btn=>btn.addEventListener('click',()=>{
